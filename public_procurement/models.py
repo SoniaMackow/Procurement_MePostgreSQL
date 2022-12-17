@@ -21,7 +21,11 @@ class Contract(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     def __str__(self):
-        return f'{self.title} {self.contractor}'
+        text = ""
+        for s in {self.contractor.all()}:
+            for x in s:
+               text += x.name
+        return f'{self.title} -- {text} --- {self.value_contract} -- {self.start_date}---{self.end_date}'
     def get_absolute_url(self):
         return reverse('detail_contract', args=(self.id,))
 class TypeProcurement(models.Model):
