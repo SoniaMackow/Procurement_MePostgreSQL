@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p><input type="text" name="type_procurement" placeholder="Typ zamówienia"></p>
+        <label>
+            Contract:
+        <select name='contract'>
+            {%  for c in cont %}
+            <option value="{{ c.pk }}">{{ c.title }}</option>
+            {% endfor %}
+        </select>
+        </label>
+
+        <p><input type="submit"></p>
+    </form>
+{% endblock %}
